@@ -167,16 +167,24 @@ void setStatusLED(const enum StatusLED state) {
       ws2812b.led_set_color(0, 0, 0, 0);
       break;
     case LED_STANDBY:
-      ws2812b.led_set_color(0, 0, 0xFF, 0); // green
+      ws2812b.led_set_color(0, 0, 0xFF, 0); // green, cold white on WWA
       break;
     case LED_HEATING: {
+#if defined(WWA_LED)
+      ws2812b.led_set_color(0, 0, 0, ((xTaskGetTickCount() / 4) % 192) + 64); // warm white fade on WWA
+#else
       ws2812b.led_set_color(0, ((xTaskGetTickCount() / 4) % 192) + 64, 0, 0); // Red fade
+#endif
     } break;
     case LED_HOT:
-      ws2812b.led_set_color(0, 0xFF, 0, 0); // red
+      ws2812b.led_set_color(0, 0xFF, 0, 0); // red, amber on WWA
       break;
     case LED_COOLING_STILL_HOT:
+#if defined(WWA_LED)
+      ws2812b.led_set_color(0, 0, 0, 0xFF); // warm white on WWA
+#else
       ws2812b.led_set_color(0, 0xFF, 0x20, 0x00); // Orange
+#endif
       break;
     }
     ws2812b.led_update();

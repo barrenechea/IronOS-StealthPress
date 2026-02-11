@@ -42,6 +42,7 @@ Example :
     $(basename "$0") -l EN -m \"TS100 MHP30\"             (Build one language and multi models)
     $(basename "$0") -l \"DE EN\" -m \"TS100 MHP30\"        (Build multi languages and models)
     $(basename "$0") -l EN -m Pinecilv2 -o ws2812b_enable=1
+    $(basename "$0") -l EN -m Pinecilv2 -o \"ws2812b_enable=1 wwa_led=1\"
 
 INFO : 
     By default, without parameters, the build is for all platforms and all languages

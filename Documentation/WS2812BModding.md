@@ -31,3 +31,12 @@ You can use e.g. 0.1-mm enameled wire and isolate connections with UV glue to av
 ## How to enable it in the code?
 
 `make firmware-EN model=Pinecilv2 ws2812b_enable=1`
+
+For WWA LEDs that are wired through the WS2812B channels:
+
+`make firmware-EN model=Pinecilv2 ws2812b_enable=1 wwa_led=1`
+
+With `wwa_led=1`, status colors are remapped as:
+- standby: green channel (cold white)
+- heating/cooling: blue channel (warm white)
+- hot: red channel (amber)
